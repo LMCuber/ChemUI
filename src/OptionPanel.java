@@ -8,33 +8,41 @@ public class OptionPanel extends JPanel {
     JLabel titleLabel;
     JLabel distanceLabel;
     JSlider distanceSlider;
+    JLabel distanceValue;
 
-    public OptionPanel(int width, int height) {
+    public OptionPanel(int x, int y, int w, int h) {
+        // layout
         GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+//        gbc.fill = GridBagConstraints.BOTH;
         GridBagLayout layout = new GridBagLayout();
-        // initializing the option panel
+        // option panel
         titleFont = new Font("Courier New",Font.BOLD, 30);
         font = new Font("Courier New", Font.ITALIC, 20);
-        this.setBounds(0, 0, width, height);
-        this.setBackground(new Color(140, 140, 140));
-        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setLayout(layout);
+        setBounds(x, y, w, h);
+        setBackground(new Color(140, 140, 140));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setLayout(layout);
 
         // title
         titleLabel = new JLabel("Options");
         titleLabel.setFont(titleFont);
 
         // distance
+        distanceSlider = new JSlider();
         distanceLabel = new JLabel("Distance");
         distanceLabel.setFont(font);
-        distanceSlider = new JSlider();
+        distanceValue = new JLabel("1");
 
-        // packing stuff
-        gbc.gridy = 0;
+        // placing stuff with GridBag
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2; gbc.gridheight = 1;
         this.add(titleLabel, gbc);
         gbc.gridy = 1;
         this.add(distanceLabel, gbc);
-        gbc.gridy = 2;
+        gbc.gridy = 2; gbc.gridwidth = 1;
         this.add(distanceSlider, gbc);
+        gbc.gridx = 1;
+        this.add(distanceValue, gbc);
     }
 }

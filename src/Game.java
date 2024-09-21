@@ -1,11 +1,13 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.Color;
-import java.time.Instant;
+import java.util.ArrayList;
 
-public class Game implements Runnable {
+public class Game {
     Thread gameThread;
-    long lastTick;
+    double lastTick;
+    ArrayList<Matrix> vertices;
+    OptionPanel optionPanel;
+    CanvasPanel canvasPanel;
 
     public Game(int windowWidth, int windowHeight){
         // initializing the frame
@@ -15,21 +17,13 @@ public class Game implements Runnable {
         frame.setSize(windowWidth, windowHeight);
         frame.getContentPane().setBackground(new Color(90, 90, 90));
 
-        // frame final
-        OptionPanel optionPanel = new OptionPanel(200, windowHeight);
+        // frame final with all the panels
+        int optionPanelWidth = 200;
+        optionPanel = new OptionPanel(0, 0, optionPanelWidth, windowHeight);
+        canvasPanel = new CanvasPanel(optionPanelWidth, 0, windowWidth - optionPanelWidth, windowHeight);
+
         frame.add(optionPanel);
+        frame.add(canvasPanel);
         frame.setVisible(true);
-
-        // new game thread boiling
-        gameThread = new Thread(this);
-        gameThread.start();
-        lastTick = System.nanoTime();
-    }
-
-    @Override
-    public void run() {
-        while (gameThread != null) {
-//            System.out.println(i);
-        }
     }
 }
