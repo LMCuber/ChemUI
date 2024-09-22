@@ -19,8 +19,8 @@ public class Game {
 
         // frame final with all the panels
         int optionPanelWidth = 200;
-        optionPanel = new OptionPanel(0, 0, optionPanelWidth, windowHeight);
         canvasPanel = new CanvasPanel(optionPanelWidth, 0, windowWidth - optionPanelWidth, windowHeight);
+        optionPanel = new OptionPanel(0, 0, optionPanelWidth, windowHeight, canvasPanel);
 
         frame.add(optionPanel);
         frame.add(canvasPanel);
